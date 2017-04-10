@@ -85,7 +85,7 @@ module.exports = function (sails) {
       sails.after(eventsToWaitFor, function () {
         sails.log.verbose('sails mongoat started');
 
-        if(sails.config.models.migrate !== 'alter' && sails.config.models.migrate !== 'drop') {
+        if(sails.config.models.migrate !== 'alter' && sails.config.models.migrate !== 'drop' && !sails.config.mongoat && !sails.config.mongoat.forceIndexes) {
           sails.log.verbose('sails mongoat skipping index creation (according to "' + sails.config.models.migrate + '" migration strategy)');
           return cb();
         }
